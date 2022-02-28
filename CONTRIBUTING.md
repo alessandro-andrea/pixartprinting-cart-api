@@ -13,7 +13,9 @@ To avoid decimal problems I save items price and cart's total in integer format.
 
 The interface has the role to manage all information about items and cart totals, and it follows REST/CRUD pattern to do it.
 
-The interface has its own versioning system and, at this time, it's "v1": this slug is important and required for future updates or improvements.
+The interface has its own versioning system and, at this time, it's `v1`: this slug is important and required for future updates or improvements.
+
+In case of error, the interface returns a textual error in a field called `error_msg`. 
 
 ## Retrieve a cart (GET)
 To obtain the current cart opened by a customer in an ecommerce, the interface required a _customer_id_ and an _ecommerce_id_.
@@ -182,7 +184,3 @@ If you want, you can populate the database with some example data:
 ```bash
 php artisan db:seed
 ```
-
-# Testing
-You can test the interface with an API Client, such as [Postman](https://www.postman.com).
-
