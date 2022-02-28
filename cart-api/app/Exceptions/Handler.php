@@ -50,8 +50,18 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         //return parent::render($request, $exception);
+        $message = $exception->getMessage();
+        if ($message == '') {
+            $message = 'Sorry, an error was occured: ' . last(explode('\\', get_class($exception)));
+        }
+
+        $code = 500;
+        if ($exception->getStatusCode() != 0) {
+            $code = $exception->getStatusCode();
+        }
+
         return response()->json([
-            'error_msg' => $exception->getMessage()
-        ], 500);
+            'error_msg' => $message
+        ], $code);
     }
 }
